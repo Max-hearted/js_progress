@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      //把形如100000000
+      //变成01.000.000.000
+
+      var str = '100000000';
+      var reg = /(?=(\B)(\d{3})+$)/g;
+
+      console.log(str.replace(reg, '.'));
+    </script>
+  </body>
+</html>

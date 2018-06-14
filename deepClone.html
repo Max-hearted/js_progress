@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+
+    <script type="text/javascript">
+
+    //深度克隆的函数实现
+    
+
+      function deepClone(origin, target) {
+
+        var target = target || {},
+        toStr = Object.prototype.toString,
+        arrStr = "[object Array]";
+
+        for(var prop in origin) {
+          if(origin.hasOwnProperty(prop)) {
+            if(origin[prop] !== "null" && typeof (origin[prop] == "object")) {
+              if(toStr.call(origin[prop]) == arrStr) {
+                target[prop] = [];
+              }else{
+                target[prop] = {};
+              }
+              deepClone(origin[prop], target[prop]);
+            }else{
+              target[prop] = origin[prop];
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>鼠标的拖拽事件</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    #box {
+      width: 100px;
+      height: 100px;
+      background: red;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+  </div>
+  <script type="text/javascript">
+    var oBox = document.getElementById('box');
+    var body = document.getElementsByTagName('body')[0];
+
+    function bindEvent (ele, wrap) {
+      //鼠标按键落下--移动--松开
+      var x,y,boxL,boxT,disL,disT;
+      var drag = false;
+      ele.onmousedown = function (e) {
+        drag = true;
+        var event = e || window.event;
+        x = event.clientX;
+        y = event.clientY;
+        boxL = ele.offsetLeft;
+        boxT = ele.offsetTop;
+        disL = x - boxL;
+        disT = y - boxT;
+      };
+      wrap.onmousemove = function (e) {
+        var event = e || window.event;
+        if(drag) {
+          ele.style.left = event.clientX - disL + 'px';
+          ele.style.top = event.clientY - disT + 'px';
+        }
+      };
+      ele.onmouseup = function (e) {
+        drag = true;
+      };
+    }
+    bindEvent(oBox, body);
+  </script>
+</body>
+</html>

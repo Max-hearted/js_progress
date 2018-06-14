@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 阻止恶意脚本操作点击事件 -->
+  <!-- 节流 throttle() -->
+  <div class="div">0</div>
+  <button id="btn">BUY!</button>
+
+  <script type="text/javascript">
+    var oDiv = document.getElementsByClassName('div')[0];
+    var oBtn = document.getElementById('btn');
+
+    function throttle (handler, wait) {
+      var lastTime = 0;
+      return function (e) {
+        var nowTime = new Date().getTime();
+        if (nowTime - lastTime > wait) {
+          handler.apply(this, arguments);
+          lastTime = nowTime;
+        }
+      }
+    }
+
+    function buy (e) {
+      console.log(this, e);
+      oDiv.innerText = parseInt(oDiv.innerText) + 1;
+    }
+
+    oBtn.onclick = throttle(buy, 1000);
+  </script>
+</body>
+</html>

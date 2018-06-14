@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      width: 100px;
+      height: 100px;
+    }
+    #box1 {
+      background: orange;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
+    #box2 {
+      background: gray;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+      margin-left: -50px;
+      margin-top: -50px;
+    }
+    #text {
+      width: 200px;
+      height: 100px;
+      margin: 0 auto;
+      color: #f90;
+    }
+  </style>
+</head>
+<body>
+  <!-- 实现拖拽和覆盖的demo -->
+  <div id="box1"></div>
+  <div id="box2"></div>
+  <div id="text"></div>
+
+  <script type="text/javascript">
+    var oBox1 = document.getElementById('box1');
+    var oBox2 = document.getElementById('box2');
+    var text = document.getElementById('text');
+    var body = document.getElementsByTagName('body')[0];
+    var eX,eY,box1W,box1H,box1F,box1T,disX,disY;
+    var lock = false;
+    var oBox2L = oBox2.offsetLeft;
+    var oBox2T = oBox2.offsetTop;
+    w = oBox1.offsetWidth;
+    h = oBox1.offsetHeight;
+    var per;
+    function bindEvent () {
+      oBox1.onmousedown = function (e) {
+        lock = true;
+        var event = e || window.event;
+        eX = event.clientX;
+        eY = event.clientY;
+        box1L = oBox1.offsetLeft;
+        box1T = oBox1.offsetTop;
+        disX = eX - box1L;
+        disY = eY - box1T;
+      };
+      body.onmousemove = function (e) {
+        var event = e || window.event;
+        if(lock) {
+          oBox1.style.left = event.clientX - disX + 'px';
+          oBox1.style.top = event.clientY - disY + 'px';
+          var l = oBox1.offsetLeft;
+          var t = oBox1.offsetTop;
+          var coverWidth = 0;
+          var coverHeight = 0;
+          if((w + l >= oBox2L) && (l <= oBox2L)) {
+            coverWidth = w + l - oBox2L;
+          } else if ((oBox2L + w > l) && (oBox2L < l)) {
+            coverWidth = oBox2L + w - l;
+          }
+          if((t + h >= oBox2T) && (oBox2T > t)) {
+            coverHeight = t + h - oBox2T;
+          }else if ((oBox2T + h >= t) && (t + h >= oBox2T + h)) {
+            coverHeight = oBox2T + h - t;
+          }
+          // console.log(coverWidth * coverHeight);
+          per = ((coverWidth * coverHeight) / 100 ).toFixed(2);
+          text.innerHTML = '图形重合面积为：' + per + "%";
+        }
+      };
+      oBox1.onmouseup = function () {
+        lock = false;
+      }
+    }
+    bindEvent();
+  </script>
+</body>
+</html>

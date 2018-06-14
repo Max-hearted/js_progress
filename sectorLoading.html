@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #box {
+      width: 500px;
+      height: 50px;
+      line-height: 50px;
+      color: rgb(0,250,140);
+      font-size: 20xp;
+      font-weight: 700;
+      text-align: center;
+    }
+  </style>
+</head>
+<!-- canvas画扇形 -->
+<body>
+  <canvas id="can" height="500" width="500"></canvas>
+  <div id="box"></div>
+
+  <script type="text/javascript">
+    var can = document.getElementById('can');
+    var oBox = document.getElementById('box');
+    var ctx = can.getContext('2d');
+
+    CanvasRenderingContext2D.prototype.sector = function (x,y,r,sDeg,eDeg) {
+      //确定圆心角，半径，起始角度和终止角度
+      this.save();
+      this.beginPath();
+      this.moveTo(x,y);
+      this.arc(x,y,r,sDeg * Math.PI / 180,eDeg * Math.PI / 180,false);
+      this.closePath();
+      this.restore();
+      return this;
+    }
+    var timer,per;
+    var angle = 0;
+    ctx.fillStyle = 'rgb(0,250,140)';
+    timer = setInterval(function () {
+      angle += 5;
+      per = (5 * angle / 18).toFixed(2);
+      oBox.innerHTML = '加载中：' + per + '%';
+      ctx.sector(250,250,100,0,angle).fill();
+      if(angle == 360) {
+        clearInterval(timer);
+        oBox.innerHTML = '加载完成！';
+      }
+    },200);
+  </script>
+</body>
+</html>

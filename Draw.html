@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+
+    ul{
+      list-style: none;
+      height: 500px;
+      width: 500px;
+    }
+
+    li{
+      border: 1px solid black;
+      height: 50px;
+      width: 50px;
+      box-sizing: border-box;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <ul>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+      <li img-data="0"></li>
+    </ul>
+  </div>
+
+  <script type="text/javascript">
+    var oul = document.getElementsByTagName('ul')[0];
+
+    oul.onmouseover = function (e) {
+
+      var event = e || window.event;
+      var target = event.target || event.srcElement;
+
+      target.style.backgroundColor = "rgb(255,255,"+ target.getAttribute("img-data") +")";
+      target.setAttribute('img-data', parseInt(target.getAttribute('img-data')) + 1);
+    }
+  </script>
+</body>
+</html>

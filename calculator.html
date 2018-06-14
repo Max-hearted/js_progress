@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    input{
+      font-size: 20px;
+      font-weight: bold;
+      text-align: right;
+
+    }
+  </style>
+</head>
+<body>
+
+  Minutes:<input type="text" value="0"><br/>
+  Seconds:<input type="text" value="0"><br/>
+  <button type="button">开始计时</button>
+
+<script type="text/javascript">
+
+  var minuteNode = document.getElementsByTagName('input')[0];
+  var secondNode = document.getElementsByTagName('input')[1];
+  var btn = document.getElementsByTagName('button')[0];
+
+
+  btn.addEventListener('click', function() {
+
+    var minute = 0;
+    var second = 0;
+    var timer = setInterval(function() {
+      second ++;
+      if(second == 60) {
+        second = 0;
+        minute ++;
+      }
+      secondNode.value = second;
+      minuteNode.value = minute;
+
+      if(minute == 3) {
+        clearInterval(timer);
+      }
+    },10);
+  });
+
+
+
+</script>
+
+</body>
+</html>
